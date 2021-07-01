@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useEffect } from 'react';
 import { useI18n } from 'next-localization';
 import {
@@ -14,45 +13,12 @@ import { StyleguideSitecoreContextValue } from 'lib/component-props';
 // If you're not supporting the Experience Editor, you can remove this.
 const publicUrl = getPublicUrl();
 
-// This is boilerplate navigation for sample purposes. Most apps should throw this away and use their own navigation implementation.
-// Most apps may also wish to use GraphQL for their navigation construction; this sample does not simply to support disconnected mode.
-const Navigation = () => {
-  const { t } = useI18n();
-
-  return (
-    <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom">
-      <h5 className="my-0 mr-md-auto font-weight-normal">
-        <Link href="/">
-          <a className="text-dark">
-            <img src={`${publicUrl}/sc_logo.svg`} alt="Sitecore" />
-          </a>
-        </Link>
-      </h5>
-      <nav className="my-2 my-md-0 mr-md-3">
-        <a
-          className="p-2 text-dark"
-          href="https://jss.sitecore.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t('Documentation')}
-        </a>
-        <Link href="/styleguide">
-          <a className="p-2 text-dark">{t('Styleguide')}</a>
-        </Link>
-        <Link href="/graphql">
-          <a className="p-2 text-dark">{t('GraphQL')}</a>
-        </Link>
-      </nav>
-    </div>
-  );
-};
-
 type LayoutProps = {
   context: StyleguideSitecoreContextValue;
 };
 
 const Layout = ({ context }: LayoutProps): JSX.Element => {
+  const { t } = useI18n();
   const { updateSitecoreContext } = useSitecoreContext({ updatable: true });
 
   // Update Sitecore Context if layoutData has changed (i.e. on client-side route change).
@@ -79,11 +45,21 @@ const Layout = ({ context }: LayoutProps): JSX.Element => {
       */}
       <VisitorIdentification />
 
-      <Navigation />
-
       {/* root placeholder for the app, which we add components to using route data */}
       <div className="container">
         <Placeholder name="header" rendering={route} />
+        <div
+          style={{
+            background: '##fdfdfd',
+            border: '1px solid black',
+            marginTop: '20px',
+            marginBottom: '20px',
+          }}
+        >
+          <h1 style={{ fontWeight: 'bold', fontSize: '22px' }}>Dictionary example:</h1>
+          <p>Products-Detail-Price: {t('Products-Detail-Price')}</p>
+          <p>Products-RelatedProducts-Title: {t('Products-RelatedProducts-Title')}</p>
+        </div>
         <Placeholder name="main" rendering={route} />
         <Placeholder name="footer" rendering={route} />
       </div>
