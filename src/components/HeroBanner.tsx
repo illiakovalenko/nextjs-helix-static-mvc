@@ -12,11 +12,18 @@ type HeroBannerProps = StyleguideComponentProps & {
 
 const HeroBanner = (props: HeroBannerProps): JSX.Element => {
   return (
-    <div>
-      <p>HeroBanner Component</p>
+    <div
+      style={{
+        background: '##fdfdfd',
+        border: '1px solid black',
+        marginTop: '20px',
+        marginBottom: '20px',
+      }}
+    >
+      <Image field={props.fields.Image} />
+      <h1 style={{ fontWeight: 'bold', fontSize: '22px' }}>HeroBanner Component</h1>
       <Text field={props.fields.Title} />
       <Text field={props.fields.Subtitle} />
-      <Image field={props.fields.Image} />
     </div>
   );
 };
