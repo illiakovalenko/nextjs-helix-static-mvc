@@ -1,6 +1,6 @@
 import { GraphQLRequestClient } from '@sitecore-jss/sitecore-jss-nextjs';
 import React, { useState } from 'react';
-import { GraphQlComponentQueryDocument } from './GraphqlComponent.graphql';
+import { GraphQlComponentQueryDocument } from './GraphQLComponent.graphql';
 import config from 'temp/config';
 
 const GraphQLConnectedDemo = (props: any): JSX.Element => {
