@@ -24,7 +24,7 @@ const GraphQLConnectedDemo = (props: any): JSX.Element => {
       {JSON.stringify(state)}
     </div>
   ) : (
-    <p>............</p>
+    <p>.........</p>
   );
 };
 
