@@ -17,6 +17,7 @@ const nextConfig = {
   // Make the same PUBLIC_URL available as an environment variable on the client bundle
   env: {
     PUBLIC_URL: publicUrl,
+    SITECORE_API_KEY: jssConfig.sitecoreApiKey,
   },
 
   i18n: {
