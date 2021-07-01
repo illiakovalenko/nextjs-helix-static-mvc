@@ -2,10 +2,10 @@ import { GraphQLRequestClient } from '@sitecore-jss/sitecore-jss-nextjs';
 import React, { useState } from 'react';
 import { GraphQlComponentQueryDocument } from './GraphQLComponent.graphql';
 import config from 'temp/config';
+import { StyleguideComponentProps } from 'lib/component-props';
 
-const GraphQLConnectedDemo = (props: any): JSX.Element => {
+const GraphQLConnectedDemo = (props: StyleguideComponentProps): JSX.Element => {
   const [state, setState] = useState();
-  const data = props.data;
 
   const graphQLClient = new GraphQLRequestClient(config.graphQLEndpoint, {
     apiKey: config.sitecoreApiKey,
@@ -13,18 +13,15 @@ const GraphQLConnectedDemo = (props: any): JSX.Element => {
 
   graphQLClient
     .request(GraphQlComponentQueryDocument, {
-      path: '{AD498306-5DAF-4F00-AEBA-4D3F3A974419}',
+      path: props.rendering.dataSource,
     })
     .then((data) => setState(data as any));
 
-  return data ? (
-    <div data-e2e-id="graphql-connected">
-      {data.Title}
-      {data.SubTitle}
-      {JSON.stringify(state)}
+  return (
+    <div>
+      <h3>GraphQLComponent</h3>
+      {state ? <div>{JSON.stringify(state)}</div> : <p>.........</p>}
     </div>
-  ) : (
-    <p>.........</p>
   );
 };
 
