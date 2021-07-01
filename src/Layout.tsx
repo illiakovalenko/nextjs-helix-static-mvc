@@ -17,8 +17,26 @@ type LayoutProps = {
   context: StyleguideSitecoreContextValue;
 };
 
-const Layout = ({ context }: LayoutProps): JSX.Element => {
+const DictionaryComponent = () => {
   const { t } = useI18n();
+
+  return (
+    <div
+      style={{
+        background: '##fdfdfd',
+        border: '1px solid black',
+        marginTop: '20px',
+        marginBottom: '20px',
+      }}
+    >
+      <h1 style={{ fontWeight: 'bold', fontSize: '22px' }}>Dictionary example:</h1>
+      <p>Products-Detail-Price: {t('Products-Detail-Price')}</p>
+      <p>Products-RelatedProducts-Title: {t('Products-RelatedProducts-Title')}</p>
+    </div>
+  );
+};
+
+const Layout = ({ context }: LayoutProps): JSX.Element => {
   const { updateSitecoreContext } = useSitecoreContext({ updatable: true });
 
   // Update Sitecore Context if layoutData has changed (i.e. on client-side route change).
@@ -48,18 +66,7 @@ const Layout = ({ context }: LayoutProps): JSX.Element => {
       {/* root placeholder for the app, which we add components to using route data */}
       <div className="container">
         <Placeholder name="header" rendering={route} />
-        <div
-          style={{
-            background: '##fdfdfd',
-            border: '1px solid black',
-            marginTop: '20px',
-            marginBottom: '20px',
-          }}
-        >
-          <h1 style={{ fontWeight: 'bold', fontSize: '22px' }}>Dictionary example:</h1>
-          <p>Products-Detail-Price: {t('Products-Detail-Price')}</p>
-          <p>Products-RelatedProducts-Title: {t('Products-RelatedProducts-Title')}</p>
-        </div>
+        <DictionaryComponent />
         <Placeholder name="main" rendering={route} />
         <Placeholder name="footer" rendering={route} />
       </div>

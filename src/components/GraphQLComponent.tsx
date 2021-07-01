@@ -16,15 +16,21 @@ const GraphQLConnectedDemo = (props: StyleguideComponentProps): JSX.Element => {
       path: props.rendering.dataSource,
     })
     .then((data) => {
-      console.log('DATA:', data);
       setState(data as any);
       return data;
     });
 
   return (
-    <div>
-      <h3>GraphQLComponent</h3>
-      <div>{JSON.stringify(state)}</div>
+    <div
+      style={{
+        background: '##fdfdfd',
+        border: '1px solid black',
+        marginTop: '20px',
+        marginBottom: '20px',
+      }}
+    >
+      <h1 style={{ fontWeight: 'bold', fontSize: '22px' }}>GraphQLComponent</h1>
+      <div>{JSON.stringify(state, null, 2)}</div>
     </div>
   );
 };

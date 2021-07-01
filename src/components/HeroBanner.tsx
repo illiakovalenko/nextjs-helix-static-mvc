@@ -1,9 +1,4 @@
-import {
-  Text,
-  Field,
-  Image,
-  ImageField,
-} from '@sitecore-jss/sitecore-jss-nextjs';
+import { Text, Field, Image, ImageField } from '@sitecore-jss/sitecore-jss-nextjs';
 import { StyleguideComponentProps } from 'lib/component-props';
 
 type HeroBannerProps = StyleguideComponentProps & {
@@ -16,15 +11,14 @@ type HeroBannerProps = StyleguideComponentProps & {
 };
 
 const HeroBanner = (props: HeroBannerProps): JSX.Element => {
-
   return (
     <div>
-    <p>HeroBanner Component1111</p>
-    <Text field={props.fields.Title} />
-    <Text field={props.fields.Subtitle} />
-    <Image field={props.fields.Image} />
-  </div>
-  )
-}
+      <p>HeroBanner Component</p>
+      <Text field={props.fields.Title} />
+      <Text field={props.fields.Subtitle} />
+      <Image field={props.fields.Image} />
+    </div>
+  );
+};
 
 export default HeroBanner;
