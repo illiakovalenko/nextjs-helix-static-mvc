@@ -1,4 +1,4 @@
-query GraphQLComponentQuery($path: String!) {
+query GraphQLQuery($path: String!) {
   item(path:$path, language:"en") 
   {
     fields {
