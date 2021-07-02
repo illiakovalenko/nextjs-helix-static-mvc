@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import NotFound from 'src/NotFound';
 import Layout from 'src/Layout';
 import {
@@ -42,6 +42,7 @@ const SitecorePage = ({ notFound, layoutData, componentProps }: SitecorePageProp
   );
 };
 
+// #if process.env.CATCH_ALL_PRERENDER === 'SSG'
 // This function gets called at build and export time to determine
 // pages for SSG ("paths", as tokenized array).
 export const getStaticPaths: GetStaticPaths = async (context) => {
@@ -75,6 +76,8 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const props = await sitecorePagePropsFactory.create(context);
 
+  console.log('[SSG MODE]');
+
   return {
     props,
     // Next.js will attempt to re-generate the page:
@@ -84,5 +87,24 @@ export const getStaticProps: GetStaticProps = async (context) => {
     notFound: props.notFound, // Returns custom 404 page with a status code of 404 when true
   };
 };
+// #endif
+
+// #if process.env.CATCH_ALL_PRERENDER === 'SSR'
+// This function gets called at request time on server-side.
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const props = await sitecorePagePropsFactory.create(context);
+
+  console.log('[SSR MODE]');
+
+  // Returns custom 404 page with a status code of 404 when notFound: true
+  // Note we can't simply return props.notFound due to an issue in Next.js (https://github.com/vercel/next.js/issues/22472)
+  const notFound = props.notFound ? { notFound: true } : {};
+
+  return {
+    props,
+    ...notFound,
+  };
+};
+// #endif
 
 export default SitecorePage;

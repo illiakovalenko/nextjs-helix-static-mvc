@@ -87,6 +87,13 @@ const nextConfig = {
   webpack: (config, options) => {
     applyGraphQLCodeGenerationLoaders(config, options);
 
+    // Allow conditional compilation for our various E2E test "modes" (SSG/SSR/Hybrid)
+    // using https://www.npmjs.com/package/webpack-conditional-loader
+    config.module.rules.push({
+      test: /\.tsx$/,
+      use: [options.defaultLoaders.babel, 'webpack-conditional-loader']
+    })
+
     return config;
   },
 };

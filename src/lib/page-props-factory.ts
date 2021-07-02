@@ -110,8 +110,6 @@ export class SitecorePagePropsFactory {
 
       // Fetch dictionary data
       dictionary = await this.dictionaryService.fetchDictionaryData(locale);
-
-      console.log('----', dictionary);
     }
 
     // Retrieve component props using side-effects defined on components level

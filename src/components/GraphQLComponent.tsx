@@ -7,9 +7,7 @@ import { StyleguideComponentProps } from 'lib/component-props';
 const GraphQLConnectedDemo = (props: StyleguideComponentProps): JSX.Element => {
   const [state, setState] = useState({});
 
-  const graphQLClient = new GraphQLRequestClient(config.graphQLEndpoint, {
-    apiKey: config.sitecoreApiKey,
-  });
+  const graphQLClient = new GraphQLRequestClient(config.graphQLEndpoint);
 
   graphQLClient
     .request(GraphQlQueryDocument, {
@@ -17,7 +15,9 @@ const GraphQLConnectedDemo = (props: StyleguideComponentProps): JSX.Element => {
     })
     .then((data) => {
       setState(data as any);
-      return data;
+    })
+    .catch((err) => {
+      setState(err);
     });
 
   return (
