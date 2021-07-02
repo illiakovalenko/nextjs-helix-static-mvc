@@ -47,8 +47,6 @@ const Layout = ({ context }: LayoutProps): JSX.Element => {
 
   const { route } = context;
 
-  console.log('[process.env.EXPORT_MODE]:', process.env.EXPORT_MODE);
-
   return (
     <>
       <Head>
