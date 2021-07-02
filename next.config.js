@@ -20,16 +20,16 @@ const nextConfig = {
     SITECORE_API_KEY: jssConfig.sitecoreApiKey,
   },
 
-  i18n: {
+  i18n: !process.env.EXPORT_MODE && {
     // These are all the locales you want to support in your application.
     // These should generally match (or at least be a subset of) those in Sitecore.
-    locales: ['en', 'da-DK'],
+    locales: packageConfig.languages,
     // This is the locale that will be used when visiting a non-locale
     // prefixed path e.g. `/styleguide`.
     defaultLocale: packageConfig.language,
   },
 
-  async rewrites() {
+  rewrites: !process.env.EXPORT_MODE && (async () => {
     if (isDisconnected) {
       // When disconnected we proxy to the local faux layout service host, see scripts/disconnected-mode-server.js
       return [
@@ -82,7 +82,7 @@ const nextConfig = {
         },
       ];
     }
-  },
+  }),
 
   webpack: (config, options) => {
     applyGraphQLCodeGenerationLoaders(config, options);

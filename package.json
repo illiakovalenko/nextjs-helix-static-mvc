@@ -10,7 +10,10 @@
     ],
     "sitecoreConfigPath": "/App_Config/Include/zzz",
     "graphQLEndpointPath": "/sitecore/api/graph/edge",
-    "language": "en"
+    "language": "en",
+    "languages": [
+      "en"
+    ]
   },
   "engines": {
     "node": ">=8.1",
@@ -84,8 +87,10 @@
     "graphql:update": "ts-node --project tsconfig.scripts.json ./scripts/fetch-graphql-introspection-data.ts",
     "next:build": "next build",
     "next:dev": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "next:export": "next export",
     "next:start": "next start",
     "scaffold": "ts-node --project tsconfig.scripts.json scripts/scaffold-component.ts",
+    "export:connected": "cross-env-shell EXPORT_MODE=true \"npm-run-all --serial bootstrap next:build next:export\"",
     "start:connected": "npm-run-all --serial bootstrap --parallel next:dev start:watch-components",
     "start": "cross-env-shell JSS_MODE=disconnected \"npm-run-all --serial bootstrap --parallel next:dev start:disconnected-proxy start:watch-components\"",
     "start:disconnected-proxy": "ts-node --project tsconfig.scripts.json ./scripts/disconnected-mode-proxy.ts",

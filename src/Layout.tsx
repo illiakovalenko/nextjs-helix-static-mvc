@@ -61,12 +61,12 @@ const Layout = ({ context }: LayoutProps): JSX.Element => {
 
         VI detection only runs once for a given analytics ID, so this is not a recurring operation once cookies are established.
       */}
-      <VisitorIdentification />
+      {!process.env.EXPORT_MODE && <VisitorIdentification />}
 
       {/* root placeholder for the app, which we add components to using route data */}
       <div className="container">
         <Placeholder name="header" rendering={route} />
-        <DictionaryComponent />
+        {!process.env.EXPORT_MODE && <DictionaryComponent />}
         <Placeholder name="main" rendering={route} />
         <Placeholder name="footer" rendering={route} />
       </div>
