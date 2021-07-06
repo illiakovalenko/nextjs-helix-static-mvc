@@ -18,7 +18,7 @@ export class SitecoreSitemapFetcher {
       endpoint: config.graphQLEndpoint,
       apiKey: config.sitecoreApiKey,
       siteName: config.jssAppName,
-      rootItemId: '{38309A60-6CA4-4E2A-99E0-2B447D8B02FC}',
+
       /*
       The Sitemap Service needs a root item ID in order to fetch the list of pages for the current
       app. If your Sitecore instance only has 1 JSS App, you can specify the root item ID here;
