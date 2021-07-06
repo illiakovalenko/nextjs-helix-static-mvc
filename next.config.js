@@ -18,6 +18,7 @@ const nextConfig = {
   env: {
     PUBLIC_URL: publicUrl,
     SITECORE_API_KEY: jssConfig.sitecoreApiKey,
+    SITECORE_API_HOST: jssConfig.sitecoreApiHost,
     EXPORT_MODE: process.env.EXPORT_MODE,
   },
 
